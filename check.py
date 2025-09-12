@@ -16,9 +16,11 @@ def scrape_headings(url: str):
     
     for level in range(1, 7):  # h1 through h6
         headings = soup.find_all(f"h{level}")
-        for i, heading in enumerate(headings, start=1):
-            text = heading.get_text(strip=True)
-            print(f"<h{level}> #{i}: {text}")
+        if headings:
+            print(f"\n{len(headings)} h{level} headings found:")
+            for i, heading in enumerate(headings, start=1):
+                text = heading.get_text(strip=True)
+                print(f"<h{level}> #{i}: {text}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
